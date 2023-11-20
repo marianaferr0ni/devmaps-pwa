@@ -6,10 +6,10 @@ import {ExpirationPlugin} from 'workbox-expiration';
 // configurando o cache
 
 const pageCache = new CacheFirst({
-    cacheName: 'camera-pwa',
+    cacheName: 'pwaGeo',
     plugins: [
         new CacheableResponsePlugin({
-            statuses: [0, 2001]
+            statuses: [0, 200]
         }),
         new ExpirationPlugin({
             maxAgeSeconds: 30 * 24 * 60 * 60
@@ -25,7 +25,8 @@ registerRoute(({request}) => request.mode === 'navigate', pageCache);
 
 registerRoute(
     // configurando cache de assets
-    ({request}) => ['style', 'script', 'worker'].includes(request.destination),
+    ({request}) => ['style', 'script', 'worker']
+    .includes(request.destination),
     new StaleWhileRevalidate({
         cacheName: 'asset-cache',
         plugins: [new CacheableResponsePlugin({

@@ -3,23 +3,18 @@
     "short_name": "geoloc-pwa",
     "icons": [
         {
-            "src": "images/128.jpg",
-            "sizes": "128x128",
-            "type": "image/png"
-        },
-        {
-            "src": "images/256.jpg",
+            "src": "img/favicon.jpg",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "images/512.jpg",
+            "src": "img/favicon.jpg",
             "sizes": "512x512",
             "type": "image/png"
         },
         {
-            "src": "images/256.jpg",
-            "sizes": "256x256",
+            "src": "img/favicon.jpg",
+            "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
         }

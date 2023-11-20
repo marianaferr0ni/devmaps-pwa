@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator) {
     try {
       let reg;
       reg = await navigator.serviceWorker.register('./sw.js', {type: "module"});
-      console.log('Service worker registrada! reg');
+      console.log('Service worker registrada!', reg);
     } catch (err) {
       console.log(' Service worker registro falhou:', err);
     }
@@ -14,11 +14,14 @@ let posicaoInicial; //variavel para capturar a posicao
 const capturarLocalizacao = document.getElementById('localizacao');
 const latitude = document.getElementById('latitude');
 const longitude = document.getElementById('longitude');
+const map = document.getElementById('mapa');
 const sucesso = (posicao) => {//callback de sucesso para captura da posicao
   posicaoInicial = posicao;
   latitude.innerHTML = posicaoInicial.coords.latitude;
   longitude.innerHTML = posicaoInicial.coords.longitude;
+  map.src = "https://maps.google.com/maps?q=" + posicaoInicial.coords.latitude + ", " + posicaoInicial.coords.longitude + "&z=16&output=embed"
 }
+
 
 const erro = (error) => {//callback ite error (falha para captura de Localizacao)
   let errorMessage;
