@@ -23,18 +23,26 @@
         <nav>
           <input type="text" id="inputLocalizacao" placeholder="Digite a localização desejada">
           <button id="pesquisarLocalizacao">Pesquisar</button>
+          <button id="listarCoordenadas">Listar Coordenadas</button>
           <br>
         </nav>
       
         <div class="conteudoLocalizacao">
-          <p>Latitude: <span id="latitude">0.0</span></p>
-          <p>Logitude: <span id="longitude">0.0</span></p>
-          <div><button class="botao" id="localizacao">Capturar Localização</button></div>
+          <p><iframe id="mapa" class="map_part" width="450"  height="450"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ></iframe></p>
         </div>
-        <p><iframe id="mapa" class="map_part" width="450"  height="450"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ></iframe></p>
+        
       </div>
 
+      <section>
+        <div id="listaCoordenadas"></div>
+      </section>
 
+      <div>
+        <h3>Coordenadas Armazenadas:</h3>
+        <div id="listaCoordenadas"></div>
+      </div>
+    
+      <iframe id="mapa" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         
       <footer class="rodape">
         Progressive Web Application Geolocation
