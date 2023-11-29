@@ -42,26 +42,32 @@ request.onupgradeneeded = (event) => {
 capturarLocalizacao.addEventListener('click', () => {
   const localizacaoDigitada = inputLocalizacao.value;
   if (localizacaoDigitada) {
-    const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(localizacaoDigitada)}&z=16&output=embed`;
-    map.src = mapUrl;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        
+        const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(localizacaoDigitada)}&z=16&output=embed`;
+        map.src = mapUrl;
 
-    // Salvar as coordenadas no IndexedDB
-    const coordenadas = {
-      localizacao: localizacaoDigitada
-    };
+        // Salvar as coordenadas no IndexedDB
+        const coordenadas = {
+          localizacao: `${localizacaoDigitada}, ${latitude}, ${longitude}`
+        };
+        const transaction = db.transaction(['coordenadas'], 'readwrite');
+        const objectStore = transaction.objectStore('coordenadas');
 
-    const transaction = db.transaction(['coordenadas'], 'readwrite');
-    const objectStore = transaction.objectStore('coordenadas');
+        const request = objectStore.add(coordenadas);
 
-    const request = objectStore.add(coordenadas);
+        request.onsuccess = () => {
+          console.log('Coordenadas salvas com sucesso no IndexedDB');
+        };
 
-    request.onsuccess = () => {
-      console.log('Coordenadas salvas com sucesso no IndexedDB');
-    };
-
-    request.onerror = () => {
-      console.error('Erro ao salvar coordenadas no IndexedDB');
-    };
+        request.onerror = () => {
+          console.error('Erro ao salvar coordenadas no IndexedDB');
+        };
+      }
+    )
   } else {
     alert("Por favor, digite uma localização válida.");
   }
