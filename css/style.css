@@ -87,10 +87,9 @@ iframe{
   }
   .container {
     box-sizing: border-box;
-    max-width: 100%;
-    width: 960px;
     margin: 0 auto;
     padding: 1em;
+    width: 350px;
   }
   .titulo {
     text-align: center;
